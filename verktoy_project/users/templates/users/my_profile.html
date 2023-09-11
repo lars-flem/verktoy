@@ -1,0 +1,72 @@
+{% extends "users/base.html" %}
+{% block title %} Min profil {% endblock title%}
+{% block content %}
+<div>
+    <h1>Velkommen til din profil, {{user.username}}!</h1>
+
+    <div>
+        <h3>Biografi</h3>
+        <div class='bioDIV'>
+            <p>
+                {{profile.bio}}
+            </p>
+        </div>
+        <h3>Telefonnummer</h3>
+        <div class='tlfDIV'>
+            <p>
+                {{profile.tlf}}
+            </p>
+        </div>
+    </div>
+
+    <a href="{% url 'users:update_profile' %}" class="knapp">Oppdater</a>
+    <br>
+    <h3>Mine favoritter</h3>
+
+    <form action="" method = "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Ny liste" class="knapp">
+    </form>
+
+    {%for favorittliste in mine_favoritter%}
+        <p>Listenavn: {{favorittliste.listName}}</p>
+        {% for annonse in favorittliste.annonser.all%}
+            <a href="{% url 'homepage:listing' listing_id=annonse.id %}">{{annonse.title}}</a>
+        {% endfor %}
+    {% endfor %}
+
+    <br>
+    <h3>Annonser</h3>
+    <div>
+        <form action="{% url 'users:my_profile' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" value = "Click" name="my_listings">Mine annonser</button>
+            <button type="submit" value = "Click" name="loaned_out">Mine utlån</button>
+            <button type="submit" value = "Click" name="my_loans">Mine lån</button>
+        </form>
+    </div>
+
+    <div>
+        {% for listing in listings %}
+            <div class="listingDIV">
+                <a href="{% url 'homepage:listing' listing_id=listing.id %}" class="listingLink">invisible link!</a>
+                <div class="listingContent">
+                    <h2>{{listing.title}}</h2>
+                    <div class="listingImg">
+                        <img src="{{listing.image.url}} " width="120px" height="120px" />
+                    </div>
+                    <p>Sted: {{listing.location}}</p>
+                    <p>Kategori : {{listing.get_category_display}}</p>
+                    
+                    {% if listing.agreement_req_listing.all %}
+                        <p>Forespurt</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+</div>
+
+{% endblock content %}

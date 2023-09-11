@@ -1,0 +1,12 @@
+
+{% extends "users/base.html" %}
+{% block title %} Opprett ny annonseliste {% endblock title%}
+{% block content %}
+    <div>
+        <form action="" method = "post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Send inn" class="knapp">
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends "users/base.html" %}
+{% block title %} Oppdater profil {% endblock title%}
+{% block content %}
+    <div>
+        <form action="" method = "post">
+            {% csrf_token %}
+            {{ profile_form.as_p }}
+            <input type="submit" value="Oppdater" class=knapp>
+        </form>
+        <br>
+        <a href="{% url 'users:my_profile' %}" class="knapp">Avbryt</a>
+    </div>
+{% endblock content %} 

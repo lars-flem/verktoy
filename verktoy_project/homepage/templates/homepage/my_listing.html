@@ -1,0 +1,61 @@
+{% extends "users/base.html" %}
+{% block title %} Min {{listing.title}} {% endblock title%}
+{% block content %}
+    <div>
+      <p class="listing_title">{{listing.title}}</p>
+      <div class="listingImgBig">
+        <img src="{{listing.image.url}} " width="350px" height="350px" />
+      </div>
+      <br>
+      <br>
+      <p>Pris: <br>
+        {{listing.price}}</p>
+      <br>
+      <p>Utlånsstatus: <br>
+        {% if listing.loaned %}
+           Utlånt til {{loanedBy}}
+        {% else %}
+          Tilgjengelig for utlån
+        {% endif %}
+      </p>
+      <br>
+      <p>Sted: <br>
+        {{listing.location}}</p>
+      <br>
+      <p>Beskrivelse: <br>
+        {{listing.description}}</p>
+      <br>
+      <p>Kategori <br>
+        {{listing.get_category_display}}</p>
+      <br>
+      <div>
+        {% for ag_req in agreement_requests %}
+          <div>
+            <div>
+              <form action="{% url 'homepage:listing' listing.id%}" method="POST">
+                {% csrf_token %}
+                Låneforespørsel fra <a href="{% url 'users:profile' ag_req.loaner %}">{{ag_req.loaner}}</a><br>
+                <input type="hidden" name="ag_req_pk_field" value="{{ag_req.pk}}">
+                <button type="submit" value="Click" name="accept_btn">Aksepter</button>
+                <button type="submit" value="Click" name="decline_btn">Avslå</button>
+
+              </form>
+              <br>
+            </div>
+          </div>
+        {% endfor %}
+        <br>
+      <a href="{% url 'homepage:listing_overview' %}" class="knapp">Tilbake til oversikt</a>
+      <br>
+      <br>
+      <a href="{% url 'homepage:edit_listing' listing_id=listing.id %}" class="knapp">Rediger</a>
+      <br>
+      <br>
+      <form action="{% url 'homepage:remove_listing' listing.id %}" method="post" onsubmit="return confirm('Er du sikker på at du vil slette annonsen?')">
+        {% csrf_token %}
+        <button type="submit" value = "Click" name="remove_list">Slett annonse</button>
+      </form>
+    </div>
+    </div>
+    <br>
+{% endblock content %}

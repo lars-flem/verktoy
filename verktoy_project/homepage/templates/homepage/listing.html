@@ -1,0 +1,68 @@
+{% extends "users/base.html" %}
+  {% block title %} Annonse {% endblock title%}
+  {% block content %}
+      <div>
+        <p class="listing_title">{{listing.title}}</p>
+        <div class="listingImgBig">
+          <img src="{{listing.image.url}} " width="350px" height="350px" />
+        </div>
+        <p>Eier: <a href="{% url 'users:profile' listing.owner %}">{{listing.owner}}</a></p>
+        <br>
+        <p>Pris: <br>
+          {{listing.price}}</p>
+        <br>
+        <p>Utlånsstatus: <br>
+          {% if listing.loaned %}
+            Utlånt
+          {% else %}
+            Tilgjengelig for utlån
+          {% endif %}
+        </p>
+        <br>
+        <p>Sted: <br>
+          {{listing.location}}</p>
+        <br>
+        <p>Beskrivelse: <br>
+          {{listing.description}}</p>
+        <br>
+        <p>Kategori <br>
+          {{listing.get_category_display}}</p>
+        <br>
+        <a href="{% url 'homepage:listing_overview' %}" class="knapp">Tilbake til oversikt</a>
+      </div>
+      <br>
+
+  
+    <div>
+      <form action="{% url 'homepage:listing' listing.id %}" method="POST">
+        {% csrf_token %}
+        <select id='userListDD' name='userListDD'>
+          {%for liste in dropdownList%}
+          <option value="{{liste.listName}}">{{liste.listName}}</option>
+          {%endfor%}
+        </select>        
+        <button type="submit" value = "Click" name="add_to_fav_btn">Lagre i liste</button>
+      </form>
+    </div>
+
+    {% if listing.loaned %}
+        <div>
+          <p>Objektet er allerede utlånt</p>
+        </div>
+      {% elif notRequested %}
+        <div>
+          <form action="{% url 'homepage:listing' listing.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" value = "Click" name="request_btn">Forespør utlån</button>
+          </form>
+        </div>
+      {% else %}
+      <div>
+        <p>
+          Lån er allerede forespurt
+        </p>
+      </div>
+      {% endif %}
+  {% endblock content %}
+
+

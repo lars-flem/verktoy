@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="nb">
+
+<head>
+  <link rel="stylesheet" href="{% static 'stylish.css'%}">
+  <link rel="icon" type="image/x-icon" href="{% static '/img/standinFavIcon.png'%}">
+  <meta charset="utf-8" />
+  <title>
+    landingpage
+  </title>
+</head>
+
+
+<body class="bg">
+  <div class="landingpage">
+    <div class="logodiv">
+      <a href="{% url 'homepage:listing_overview' %}">
+        <img src="{% static 'img/logo.png' %}" alt="En nydelig logo" class="logoIMG">
+      </a>
+    </div>
+    <p>Velkommen til Lån!</p>
+    <p> Her kan du låne verktøy du trenger og låne bort verktøy du ikke trenger</p>
+    <a href="{% url 'homepage:listing_overview' %}" class=knapp>Videre</a>
+  </div>
+
+</body>

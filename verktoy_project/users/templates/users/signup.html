@@ -1,0 +1,36 @@
+{% extends "users/base.html" %}
+{% block title %} Registreringsside {% endblock title%}
+{% block content %}
+    <div>
+        <form method="post">            
+            {% csrf_token %}
+
+            <h5>Brukernavn</h5>
+            {{form.username}}
+            <h5>Passord</h5>
+            {{form.password1}}
+            <h5>Bekreft passord</h5>
+            {{form.password2}}
+            <button type="submit">Registrer</button>
+
+            {% if form.errors %}
+            <div>
+                <p style="color:red;">Ugyldige felter. Se krav under</p>
+            </div>
+            {% endif %}
+        </form>
+        <br>
+        <div>
+            <h5>Merk at pasord har følgende krav:</h5> 
+            <ul>
+                <li>Kan ikke være for lik annen personlig informasjon</li>
+                <li>Minst 8 tegn</li>
+                <li>Kan ikke være et vanlig brukt passord</li>
+                <li>Kan ikke kun være tall</li>
+            </ul>
+        </div>
+        <a href="{% url 'homepage:listing_overview' %}" class="knapp">Tilbake</a>
+
+    </div>
+
+{% endblock content %}

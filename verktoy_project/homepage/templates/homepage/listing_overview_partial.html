@@ -1,0 +1,19 @@
+{% if searchedListings %}
+    {% for listing in searchedListings %}
+        <div class="listingDIV">
+            <a href="{% url 'homepage:listing' listing_id=listing.id %}" class="listingLink">invisible link!</a>
+            <div class="listingContent">
+                <h2>{{listing.title}}</h2>
+                <div class="listingImg">
+                    <img src="{{listing.image.url}} " width="120px" height="120px" />
+                </div>
+                <p>Eier:   <a href="{% url 'users:profile' listing.owner %}">  <a href="{% url 'users:profile' listing.owner %}">{{listing.owner}}</a> </a> </p>
+                <p>Sted: {{listing.location}}</p>
+                <p>Kategori : {{listing.get_category_display}}</p>
+                <br>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+        <p>Ingen resultater</p>
+{% endif %}

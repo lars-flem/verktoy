@@ -1,0 +1,180 @@
+.bg {
+    margin: 0px;
+    background-image: url("../static/img/standinBG2_r.jpg");
+    background-size: cover;
+    height: 100%;
+    min-height: 100vh;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.contentBG {
+    background-color: rgb(255, 255, 255);
+    margin: 0px;
+    margin-top: 10px;
+    width: 100%;
+    padding: 0px;
+    min-height: 80vh;
+    height: auto;
+}
+
+.contentbox{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+
+h5 {
+    color: rgb(0, 0, 0);
+    font-size: larger;
+    margin: 10px;
+    margin-left: 0px;
+}
+
+.topbar {
+    margin: auto;
+    padding: 1vh;
+    text-align: center;
+}
+
+.topbar .logoIMG{
+    height: 15vh;
+}
+
+.topbarBox{
+    width: 48%;
+    margin-top: 3vh;
+    display: inline-block;
+    text-align: right;
+}
+.topbarBoxImg{
+    width: 48%;
+    margin-top: 3vh;
+    display: inline-block;
+    text-align: left;
+}
+
+button, .knapp, .knappStor {
+    background-color: rgb(180, 229, 242);
+    padding: 4px;
+    text-decoration: none;
+    box-shadow: 2px;
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    border: none;
+    border-radius: 2px;
+    font-size: 16px; 
+}
+
+.knappStor {
+    padding: 10px;
+    margin: 20px;
+    font-weight: bold;
+}
+
+button:hover, .knapp:hover, .knappStor:hover{
+    background-color: rgb(162, 229, 247);
+}
+
+button:active, .knapp:active, .knappStor:active{
+    background-color: rgb(80, 217, 255);
+}
+
+.knapp:visited, .knappStor:visited{
+    color: black;
+}
+
+.landingpage {
+    background-image: radial-gradient(rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.705));
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.landingpage .logodiv{
+    padding-top: 35vh;
+}
+
+.landingpage .logoIMG{
+    height: 20vh;
+}
+
+.listingDIV{
+    background-color: rgba(218, 218, 218, 0.737);
+    box-shadow: 1px 3px 5px rgba(63, 63, 63, 0.813);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 230px;
+    height: 250px;
+    line-height: 5px;
+    text-align: left;
+}
+
+.listingDIV:hover{
+    background-color: rgba(192, 223, 225, 0.737);
+}
+
+.listingLink{
+    color: transparent;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    line-height: normal;
+}
+
+.listingImg{
+    display: inline-block;
+    height: 120px;
+    width: 120px;
+}
+
+.listingImgBig{
+    display: inline-block;
+    height: 350px;
+    width: 350px;
+}
+
+.listingContent{
+    text-align: center;
+}
+
+.bioDIV {
+    background-color: rgb(222, 229, 229);
+    border-radius: 10px;
+    padding: 50px;
+    margin: 20px;
+    width: 400px;
+    height: auto;
+
+    display: inline-block;
+}
+.tlfDIV {
+    background-color: rgb(222, 229, 229);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+    width: 175px;
+    height: auto;
+
+    display: inline-block;
+}
+
+@keyframes blinker {
+    from {opacity: 1.0;}
+    to {opacity: 0.0;}
+  }
+  
+.blink {
+    text-decoration: blink;
+    animation-name: blinker;
+    animation-duration: 0.6s;
+    animation-iteration-count:infinite;
+    animation-timing-function:ease-in-out;
+    animation-direction: alternate;
+  }

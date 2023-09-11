@@ -1,0 +1,39 @@
+{% extends "users/base.html" %}
+{% block title %} {{user.username}}s profil {% endblock title%}
+{% block content %}
+    <div>
+        <h2>{{user.username}}s profil</h2>
+
+        <div>
+            <h3>Biografi</h3>
+            <p>
+                {{profile.bio}}
+            </p>
+    
+            <h3>Telefonnummer</h3>
+            <p>
+                {{profile.tlf}}
+            </p>
+            </div>
+
+        <br>
+
+        <div>
+            <h3>Annonser</h3>
+            {% for listing in listings %}
+            <div class="listingDIV">
+                <a href="{% url 'homepage:listing' listing_id=listing.id %}" class="listingLink">invisible link!</a>
+                <div class="listingContent">
+                    <h2>{{listing.title}}</h2>
+                    <div class="listingImg"></div>
+                    <p>Eier: {{listing.owner}}</p>
+                    <p>Sted: {{listing.location}}</p>
+                    <p>Kategori : {{listing.get_category_display}}</p>
+                    <br>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}
